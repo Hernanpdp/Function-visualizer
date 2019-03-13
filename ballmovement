@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ball_movement : MonoBehaviour
+{
+    float t;
+    const float movement_scale = 0.01f;
+    const float speed = 10f;
+    float x;
+    float y;
+    float z;
+    public float ex;
+    public float ey;
+    public float ez;
+    int[] param;
+    public GameObject main;
+    string[] eqstring = { "x^2", "y^2", "z^2", "t^2" };
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        t = -20;
+        //Debug.Log(x);
+        param = main.GetComponent<controler>().paramm;
+        ecmaker();
+        x = t;
+        y = t;
+        z = t;
+    }
+
+
+    public void ecmaker()
+    {
+        float xx = ex * ex;
+        float yy = ey * ey;
+        float zz = ez * ez;
+        float tt = t * t;
+        float xy = ex * ey;
+        float xz = ez * ex;
+        float xt = ex * t;
+        float yz = ey * ez;
+        float yt = ey * t;
+        float zt = t * ez;
+
+        
+        ex = (xx * param[0]) + (yy * param[1]) + (zz * param[2]) + (tt * param[3]) + (xy * param[4]) + (xz * param[5]) + (xt * param[6]) + (yz * param[7]) + (yt * param[8]) + (zt * param[9]) + (x * param[10]) + (y * param[11]) + (z * param[12]) + (t * param[13]);
+        ey = (xx * param[14]) + (yy * param[15]) + (zz * param[16]) + (tt * param[17]) + (xy * param[18]) + (xz * param[19]) + (xt * param[20]) + (yz * param[21]) + (yt * param[22]) + (zt * param[23]) + (x * param[24]) + (y * param[25]) + (z * param[26]) + (t * param[27]);
+        ez = (xx * param[28]) + (yy * param[29]) + (zz * param[30]) + (tt * param[31]) + (xy * param[32]) + (xz * param[33]) + (xt * param[34]) + (yz * param[35]) + (yt * param[36]) + (zt * param[37]) + (x * param[38]) + (y * param[39]) + (z * param[40]) + (t * param[41]);
+        Debug.Log("x: " + ex + "y: " + ey + "z: " + ez);
+       }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.Log(x);
+        //Debug.Log(y);
+        ecmaker();
+        t += Time.deltaTime * speed;
+        x = ex;
+        y = ey;
+        z = ez;
+        transform.position = new Vector3(x , y , z) * movement_scale;
+    }
+
+}
