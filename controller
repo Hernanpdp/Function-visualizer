@@ -1,0 +1,47 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class controler : MonoBehaviour
+{
+    public int[] paramm;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        paramm = new int[42];
+        equation();
+       //Debug.Log(1);
+    }
+
+    public void equation()
+    {
+        for (int i = 0; i < paramm.Length; i++){
+
+            float r = Random.Range(0, 9);
+
+            if (r <=3)
+            {
+                paramm[i] = -1;
+            }
+            else if (r >=6)
+            {
+                paramm[i] = 1;
+            }
+            else
+            {
+                paramm[i] = 0;
+            }
+        }
+
+        for (int i = 0; i < paramm.Length; i++) { 
+             Debug.Log(paramm[i]);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    }
+}
+
